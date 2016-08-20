@@ -10,6 +10,9 @@ Mac OS X 10.8 or later
 - choose whether to include files in *.framework* files
 - displays the number lines of code and characters, file count, and file size of all the files
 
+## [Download](https://github.com/theawesomecoder61/XLC/releases)
+Click the link above to go to the releases page.
+
 ## Screenshots
 ![Imgur](http://i.imgur.com/pGFOwO5.png)
 ![Imgur](http://i.imgur.com/QHywIcv.png)
