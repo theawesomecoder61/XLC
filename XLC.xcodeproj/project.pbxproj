@@ -14,6 +14,9 @@
 		4ABBB92D1D678CE400B1E3B6 /* XLCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABBB92C1D678CE400B1E3B6 /* XLCTests.m */; };
 		4ABBB9381D678CE400B1E3B6 /* XLCUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABBB9371D678CE400B1E3B6 /* XLCUITests.m */; };
 		4ABBB9461D67BBE800B1E3B6 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4ABBB9451D67BBE800B1E3B6 /* Credits.rtf */; };
+		4AEF46441D67E8D700B32AD5 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AEF46431D67E8D700B32AD5 /* Sparkle.framework */; };
+		4AEF46471D67EA7500B32AD5 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 4AEF46461D67EA7500B32AD5 /* dsa_pub.pem */; };
+		4AEF46491D67EA9100B32AD5 /* Sparkle.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 4AEF46431D67E8D700B32AD5 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +36,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4AEF46481D67EA8A00B32AD5 /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4AEF46491D67EA9100B32AD5 /* Sparkle.framework in Copy Files */,
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		4ABBB9151D678CE300B1E3B6 /* XLC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XLC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ABBB9181D678CE300B1E3B6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -48,6 +65,8 @@
 		4ABBB9371D678CE400B1E3B6 /* XLCUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XLCUITests.m; sourceTree = "<group>"; };
 		4ABBB9391D678CE400B1E3B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4ABBB9451D67BBE800B1E3B6 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		4AEF46431D67E8D700B32AD5 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		4AEF46461D67EA7500B32AD5 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Keys/dsa_pub.pem; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AEF46441D67E8D700B32AD5 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,6 +102,7 @@
 				4ABBB92B1D678CE400B1E3B6 /* XLCTests */,
 				4ABBB9361D678CE400B1E3B6 /* XLCUITests */,
 				4ABBB9161D678CE300B1E3B6 /* Products */,
+				4AEF46451D67E8D900B32AD5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,6 +132,7 @@
 		4ABBB91B1D678CE300B1E3B6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4AEF46461D67EA7500B32AD5 /* dsa_pub.pem */,
 				4ABBB9451D67BBE800B1E3B6 /* Credits.rtf */,
 				4ABBB91C1D678CE300B1E3B6 /* main.m */,
 			);
@@ -135,6 +157,14 @@
 			path = XLCUITests;
 			sourceTree = "<group>";
 		};
+		4AEF46451D67E8D900B32AD5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4AEF46431D67E8D700B32AD5 /* Sparkle.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -145,6 +175,7 @@
 				4ABBB9111D678CE300B1E3B6 /* Sources */,
 				4ABBB9121D678CE300B1E3B6 /* Frameworks */,
 				4ABBB9131D678CE300B1E3B6 /* Resources */,
+				4AEF46481D67EA8A00B32AD5 /* Copy Files */,
 			);
 			buildRules = (
 			);
@@ -240,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ABBB91F1D678CE300B1E3B6 /* Assets.xcassets in Resources */,
+				4AEF46471D67EA7500B32AD5 /* dsa_pub.pem in Resources */,
 				4ABBB9461D67BBE800B1E3B6 /* Credits.rtf in Resources */,
 				4ABBB9221D678CE300B1E3B6 /* MainMenu.xib in Resources */,
 			);
@@ -401,6 +433,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = XLC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
@@ -415,6 +451,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = XLC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
@@ -492,6 +532,7 @@
 				4ABBB93E1D678CE400B1E3B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4ABBB93F1D678CE400B1E3B6 /* Build configuration list for PBXNativeTarget "XLCTests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +541,7 @@
 				4ABBB9411D678CE400B1E3B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4ABBB9421D678CE400B1E3B6 /* Build configuration list for PBXNativeTarget "XLCUITests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +550,7 @@
 				4ABBB9441D678CE400B1E3B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

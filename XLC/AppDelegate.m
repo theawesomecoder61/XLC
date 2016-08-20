@@ -13,14 +13,18 @@
     NSURL *pathURL;
     NSInteger lineCt;
     NSInteger charCt;
+    NSInteger fileCt;
+    NSInteger totalBytes;
     NSMutableArray *reviewedFiles;
     NSMutableArray *lineNums;
     NSMutableArray *charCount;
+    NSMutableArray *fileSizes;
 }
 
 @property (weak) IBOutlet NSWindow *window;
 
 @property (weak) IBOutlet NSTextField *pathTF;
+
 @property (weak) IBOutlet NSButton *mCB;
 @property (weak) IBOutlet NSButton *hCB;
 @property (weak) IBOutlet NSButton *cCB;
@@ -36,8 +40,12 @@
 @property (weak) IBOutlet NSButton *emptyLinesCB;
 @property (weak) IBOutlet NSButton *fwFilesCB;
 @property (weak) IBOutlet NSButton *countBtn;
+
 @property (weak) IBOutlet NSTextField *lineTotalLabel;
 @property (weak) IBOutlet NSTextField *charTotalLabel;
+@property (weak) IBOutlet NSTextField *fileTotalLabel;
+@property (weak) IBOutlet NSTextField *bytesTotalLabel;
+
 @property (weak) IBOutlet NSTableView *resultTV;
 @end
 
@@ -46,12 +54,18 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     lineCt = 0;
     charCt = 0;
+    fileCt = 0;
+    totalBytes = 0;
+    
     [self.countBtn setEnabled:NO];
     [self.resultTV setDelegate:self];
     [self.resultTV setDataSource:self];
+    
     reviewedFiles = [NSMutableArray array];
     lineNums = [NSMutableArray array];
     charCount = [NSMutableArray array];
+    fileSizes = [NSMutableArray array];
+    
     [self.resultTV reloadData];
 }
 
@@ -72,7 +86,6 @@
     if([op runModal] == NSModalResponseOK) {
         [self.countBtn setEnabled:YES];
         path = [[[[op URL] absoluteString] stringByReplacingOccurrencesOfString:@"file://" withString:@""] stringByDeletingLastPathComponent];
-        NSLog(@"%@", path);
         pathURL = [op URL];
         [self.pathTF setStringValue:path];
     }
@@ -81,16 +94,20 @@
 - (IBAction)beginCounting:(id)sender {
     lineCt = 0;
     charCt = 0;
+    fileCt = 0;
+    totalBytes = 0;
     reviewedFiles = [NSMutableArray array];
     lineNums = [NSMutableArray array];
     charCount = [NSMutableArray array];
+    fileSizes = [NSMutableArray array];
+    
     NSString *sourcePath = [path stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSDirectoryEnumerator *dirEnum = [[NSFileManager defaultManager] enumeratorAtPath:sourcePath];
     NSString *fn;
     
     while((fn = [dirEnum nextObject])) {
         if([fn containsString:@".framework"]) {
-            if([self.fwFilesCB state]) {
+            if([self.fwFilesCB state]) { // this mess may not be necessary, but it works
                 if([[[fn pathExtension] lowercaseString] isEqualTo:@"m"] && [self.mCB state]) {
                     [self numOfLinesInFile:[path stringByAppendingPathComponent:fn] withName:fn];
                 }
@@ -184,10 +201,15 @@
     
     lineCt += total;
     charCt += [c length];
+    fileCt++;
+    
+    unsigned long long fileSize = [[[NSFileManager defaultManager] attributesOfItemAtPath:[f stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] error:nil] fileSize];
+    totalBytes += fileSize;
     
     [reviewedFiles addObject:fn];
     [lineNums addObject:[NSString stringWithFormat:@"%ld", (long)total]];
     [charCount addObject:[NSString stringWithFormat:@"%lu", (unsigned long)[c length]]];
+    [fileSizes addObject:[NSByteCountFormatter stringFromByteCount:fileSize countStyle:NSByteCountFormatterCountStyleFile]];
     
     [self.resultTV reloadData];
     
@@ -198,10 +220,15 @@
     
     formatted = [formatter stringFromNumber:[NSNumber numberWithInteger:charCt]];
     [self.charTotalLabel setStringValue:[NSString stringWithFormat:@"%@ characters", formatted]];
+    
+    formatted = [formatter stringFromNumber:[NSNumber numberWithInteger:fileCt]];
+    [self.fileTotalLabel setStringValue:[NSString stringWithFormat:@"%@ files", formatted]];
+    
+    [self.bytesTotalLabel setStringValue:[NSByteCountFormatter stringFromByteCount:totalBytes countStyle:NSByteCountFormatterCountStyleFile]];
 }
 
 //
-// NSTableStuff
+// NSTableView
 //
 - (NSInteger)numberOfSectionsInTableView:(NSTableView *)tableView {
     return 1;
@@ -217,8 +244,10 @@
         r = [lineNums objectAtIndex:row];
     } else if([[tableColumn identifier] isEqualTo:@"ch"]) {
         r = [charCount objectAtIndex:row];
+    } else if([[tableColumn identifier] isEqualTo:@"size"]) {
+        r = [fileSizes objectAtIndex:row];
     }
     return r;
- }
+}
 
 @end
