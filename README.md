@@ -6,14 +6,15 @@ Mac OS X 10.8 or later
 
 ## Features
 - choose from 12 file types to scan
-- choose whether to include empty lines
+- choose whether to include empty/blank lines
 - choose whether to include files in *.framework* files
-- displays the total lines of code and characters in all the files
+- displays the number lines of code and characters, file count, and file size of all the files
 
 ## Screenshots
-[Imgur](http://i.imgur.com/pGFOwO5.png)
+![Imgur](http://i.imgur.com/pGFOwO5.png)
+![Imgur](http://i.imgur.com/QHywIcv.png)
 
 ## Building for yourself
-1. Make sure you have Xcode installed
+1. Make sure you have the latest version of Xcode installed
 2. Download the repo as a ZIP or clone the repo
 3. Run
