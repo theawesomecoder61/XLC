@@ -11,6 +11,7 @@ Mac OS X 10.8 or later
 - displays the total lines of code and characters in all the files
 
 ## Screenshots
+[Imgur](http://i.imgur.com/pGFOwO5.png)
 
 ## Building for yourself
 1. Make sure you have Xcode installed
